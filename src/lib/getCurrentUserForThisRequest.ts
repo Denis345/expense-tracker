@@ -1,20 +1,17 @@
-import {redirect} from  "next/navigation"
-import { cookies } from "next/headers"
+import { headers as getHeaders } from "next/headers"
+import { redirect } from "next/navigation"
+import { getPayload } from "payload"
+import config from "@/payload.config"
 
+export async function getCurrentUserForThisRequest() {
+  const headers = await getHeaders()
+  const payload = await getPayload({ config })
 
-export async  function getCurrentUserForThisRequest(){
-    const cookieStore = await cookies()
-    const token = cookieStore.get("payload-token")?.value
-    if(!token)redirect('/login')
+  const { user } = await payload.auth({ headers })
 
-    const res = await fetch("http://localhost:3000/api/users/me", {
-        "headers":{
-            Cookie:`payload-token=${token}`
-        },
-    })
-    
-    if (!res.ok) redirect("/login")
-    const data = await res.json()
-    if(!data.user)redirect('/login')
-    return data.user
+  if (!user) {
+    redirect("/login")
+  }
+
+  return user
 }
