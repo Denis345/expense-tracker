@@ -67,7 +67,7 @@ export default async function HomePage() {
                     <p className="text-sm text-slate-500">Total expenses</p>
 
                     <p className="mt-2 text-3xl font-bold text-indigo-600">
-                      $12,450
+                      $129
                     </p>
                   </div>
 
