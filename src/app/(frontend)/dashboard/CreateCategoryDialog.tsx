@@ -17,6 +17,7 @@ export default function CreateCategoryDialog(){
     const [nameCategory, setNameCategory] = useState('')
     const [error, setError] = useState<null | string>(null)
     const router = useRouter()
+     const [isLoading, setIsLoading] = useState(false)
 
     function openDialog(){
          setCreateCategoryOpen(true)
@@ -30,6 +31,7 @@ export default function CreateCategoryDialog(){
     }
 
     async function saveCategory(){
+        setIsLoading(true)
         try{
             const res = await fetch("/api/categories", {
                 method:"POST", 
@@ -60,11 +62,15 @@ export default function CreateCategoryDialog(){
         catch(error){
             console.log(error)
         }
+        finally{
+            setIsLoading(false)
+        }
     }
 
     return(
         <>
                 <Button
+                disabled={isLoading}
                 onClick={openDialog}
                 variant="outline"
                 className="border-slate-700 bg-slate-900/40 text-slate-200 hover:bg-slate-800 hover:text-white"
@@ -111,8 +117,8 @@ export default function CreateCategoryDialog(){
                                     Cancel
                                 </Button>
 
-                                <Button type="button" onClick={saveCategory}>
-                                    Save category
+                                <Button disabled={isLoading}  type="button" onClick={saveCategory}>
+                                    {isLoading ?"Save category..."  :  "Save category"}
                                 </Button>
                                 </div>
                             </div>

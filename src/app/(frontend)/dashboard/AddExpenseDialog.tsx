@@ -28,6 +28,7 @@ export default  function AddExpenseDialog({categories}:{categories:Categories[]}
   const [error, setError] = useState<null | string>(null)
   const [success, setSuccess] = useState<null | string>(null)
   const [categoryid, setCategory] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter() 
 
@@ -49,6 +50,7 @@ export default  function AddExpenseDialog({categories}:{categories:Categories[]}
 
   async function saveExpance(event:React.FormEvent<HTMLFormElement>){
     event.preventDefault()
+    setIsLoading(true)
     setError(null)
     setSuccess(null)
     const formData = new FormData(event.currentTarget)
@@ -91,6 +93,9 @@ export default  function AddExpenseDialog({categories}:{categories:Categories[]}
 
     catch(error){
         console.log('errorr',error)
+    }
+    finally{
+      setIsLoading(false)
     }
 
 
@@ -176,8 +181,8 @@ export default  function AddExpenseDialog({categories}:{categories:Categories[]}
                     Cancel
                     </Button>
 
-                    <Button type="submit">
-                    Save expense
+                    <Button disabled={isLoading} type="submit" >
+                    {isLoading ?"Save expense..."  :  "Save expense"}
                     </Button>
                 </div>
                 </form>

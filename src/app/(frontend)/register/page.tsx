@@ -13,7 +13,7 @@ import {useActionState} from 'react'
 import { useRouter } from "next/navigation"
 
 export default function Register() {
-  const [state, formAction] = useActionState(registerUser, {error:null, success:null})
+  const [state, formAction, isPending] = useActionState(registerUser, {error:null, success:null})
     const router = useRouter()
 
   return (
@@ -58,11 +58,11 @@ export default function Register() {
             </div>
           )}
 
-          <Button
+          <Button disabled={isPending}
             type="submit"
             className="mt-2 w-full bg-indigo-600 text-white hover:bg-indigo-500"
           >
-            Create account
+            {isPending ? "Creating account..." : "Create account"}
           </Button>
         </form>
 

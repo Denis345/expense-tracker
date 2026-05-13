@@ -15,18 +15,21 @@ import { useRouter } from "next/navigation"
 
 
 export default function Login(){
+  
   const router = useRouter()
 
     const [errorState, seterrorState] = useState({error:null, success:null})
+    const [isLoading, setIsLoading] = useState(false)
 
     async function tryLogin(event:React.ChangeEvent<HTMLFormElement>){
+      setIsLoading(true)
       event.preventDefault()
 
       const formData = new FormData(event.currentTarget)
       
       const email = formData.get("email") as string
       const password = formData.get("password") as string
-  
+      
      try{
           const  res = await fetch("/api/users/login", {
               "method":"POST",
@@ -47,6 +50,9 @@ export default function Login(){
               error:  error?.message,
               success:null
           }
+      }
+      finally{
+        setIsLoading(false)
       }
 
       
@@ -82,10 +88,11 @@ return (
             {errorState.error && <div>{errorState.error}</div> }
             {errorState.success && <div>{errorState.success}</div> }
                <Button
+               disabled={isLoading}
             type="submit"
             className="mt-2 w-full bg-indigo-600 text-white hover:bg-indigo-500"
           >
-            Login
+            {isLoading ? "Login..." : "Login"}
           </Button>
         </form>
 
