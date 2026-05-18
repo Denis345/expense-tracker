@@ -60,6 +60,10 @@ export  default async function Dashboard(){
       console.log('-----sssssssss--', userIncomes.docs)
 
     const totalExpances = userExpences.docs.reduce((acc, expense)=>acc+Number(expense.amount), 0)
+    const totalIncomes = userIncomes.docs.reduce((acc, income)=>acc+Number(income.amount), 0)
+
+    const balance = totalIncomes-totalExpances
+
     const totalTrans = userExpences.docs.length
 
     const currentDate = new Date()
@@ -97,6 +101,7 @@ return(
             />
 
             <DashBoardInfo
+                balance= {Number(balance)}
                 totalExpances={Number(totalExpances)}
                 categoriesLen={Number(categoriesLen)}
                 totalMonthExpences={Number(totalMonthExpences)}
