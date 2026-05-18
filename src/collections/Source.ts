@@ -1,43 +1,45 @@
 import type { CollectionConfig } from "payload";
 
-export const Categories:CollectionConfig =  {
-    slug:"categories",
+export const Source : CollectionConfig = {
+    slug:"source", 
     access:{
-        create:  ( { req } )=>  Boolean( req.user )  ,
-        read:(({req})=>{
-            if(!req.user)return false
+        create:({req})=>Boolean(req.user), 
+        read:({req})=>{
+            if(!req.user) return false
+
             return{
                 user:{
                     equals:req.user.id
                 }
             }
-        }),
+        }, 
         update:({req})=>{
-            if(!req.user)return false
+            if(!req.user) return false
+
             return{
                 user:{
                     equals:req.user.id
                 }
             }
-        },
+        }, 
         delete:({req})=>{
-            if(!req.user)return false
+            if(!req.user) return false
+
             return{
                 user:{
                     equals:req.user.id
                 }
             }
-        },
+        }
+        
     },
     hooks:{
         beforeChange:[
-            ( { req, data } )=>{
-
+            ({req, data})=>{
                 if(req.user)data.user = req.user.id
                 return data
             }
         ]
-
     },
     admin: {
         useAsTitle: 'name',
@@ -47,23 +49,12 @@ export const Categories:CollectionConfig =  {
             name:"name", 
             type:"text",
             required:true
-        },
+        }, 
         {
-            name:"user",
-            type:"relationship",
-            relationTo:"users",
-            required:true,
-            filterOptions:({req})=>{
-
-                if(!req.user) return false
-
-                return{
-                    user:{
-                        equals:req.user.id
-                    }
-                }
-
-            }
+            name:"user", 
+            type:"relationship", 
+            relationTo:"users", 
+            required:true
         }
     ]
 }

@@ -1,17 +1,17 @@
 import type { CollectionConfig } from "payload";
 
-export const Categories:CollectionConfig =  {
-    slug:"categories",
+export const Incomes:CollectionConfig =  {
+    slug:"incomes",
     access:{
-        create:  ( { req } )=>  Boolean( req.user )  ,
-        read:(({req})=>{
-            if(!req.user)return false
-            return{
-                user:{
-                    equals:req.user.id
+        create:  ({req}) =>  Boolean( req.user)  ,
+        read:({req})=>{
+                if(!req.user)return false
+                return {
+                    user:{
+                        equals:req.user.id
+                    }
                 }
-            }
-        }),
+            },
         update:({req})=>{
             if(!req.user)return false
             return{
@@ -28,33 +28,34 @@ export const Categories:CollectionConfig =  {
                 }
             }
         },
+
     },
     hooks:{
         beforeChange:[
-            ( { req, data } )=>{
-
+            ( { req,  data } )=>{
                 if(req.user)data.user = req.user.id
                 return data
             }
         ]
-
     },
-    admin: {
-        useAsTitle: 'name',
-    },
+    
     fields:[
         {
-            name:"name", 
-            type:"text",
+            name:"amount", 
+            type:"number",
             required:true
         },
         {
-            name:"user",
+            name:"date",
+            type:"date",
+            required:true
+        },
+        {
+            name:"categorIncome",
             type:"relationship",
-            relationTo:"users",
+            relationTo:"source",
             required:true,
             filterOptions:({req})=>{
-
                 if(!req.user) return false
 
                 return{
@@ -62,8 +63,18 @@ export const Categories:CollectionConfig =  {
                         equals:req.user.id
                     }
                 }
-
-            }
+            },
+            
+        },
+        {
+            name:"comment",
+            type:"textarea"
+        },
+        {
+            name:"user",
+            type:"relationship",
+            relationTo:"users",
+            required:true
         }
     ]
 }

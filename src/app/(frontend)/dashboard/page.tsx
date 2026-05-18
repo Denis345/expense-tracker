@@ -4,7 +4,7 @@ import {getCurrentUserForThisRequest} from "@/lib/getCurrentUserForThisRequest"
 import { getPayload } from "payload"
 import config from '@/payload.config'
 
-import ExpensesList from "./ExpensesList"
+import ExpensesOrIncomesList from "./ExpensesOrIncomesList"
 import DashboardHeader from './DashboardHeader'
 import DashBoardInfo from './DashBoardInfo'
 
@@ -25,6 +25,18 @@ export  default async function Dashboard(){
         }
     })
 
+    const userSources = await payload.find({
+        collection:'source', 
+        limit: 100,
+        where:{
+            user:{
+                equals:user.id
+            }
+        }
+    })
+
+  
+
     const userExpences = await payload.find({
         collection:'expenses', 
         where:{
@@ -34,6 +46,18 @@ export  default async function Dashboard(){
         }, 
         sort:"-date"
     })
+
+    const userIncomes = await payload.find({
+        collection:'incomes', 
+        where:{
+            user:{
+                equals:user.id
+            }
+        }, 
+        sort:"-date"
+    })
+
+      console.log('-----sssssssss--', userIncomes.docs)
 
     const totalExpances = userExpences.docs.reduce((acc, expense)=>acc+Number(expense.amount), 0)
     const totalTrans = userExpences.docs.length
@@ -69,6 +93,7 @@ return(
             <DashboardHeader
                 userEmail={userEmail}
                 categories={userCategories.docs}
+                sources={userSources.docs}
             />
 
             <DashBoardInfo
@@ -82,9 +107,9 @@ return(
            
 
 
-            <ExpensesList expances = {userExpences.docs} >
+            <ExpensesOrIncomesList expances = {userExpences.docs} incomes = {userIncomes.docs}  >
 
-            </ExpensesList>
+            </ExpensesOrIncomesList>
 
             </div>
         </div>

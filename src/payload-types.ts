@@ -71,6 +71,8 @@ export interface Config {
     media: Media;
     categories: Category;
     expenses: Expense;
+    source: Source;
+    incomes: Income;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +84,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     expenses: ExpensesSelect<false> | ExpensesSelect<true>;
+    source: SourceSelect<false> | SourceSelect<true>;
+    incomes: IncomesSelect<false> | IncomesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -194,6 +198,31 @@ export interface Expense {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "source".
+ */
+export interface Source {
+  id: number;
+  name: string;
+  user: number | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "incomes".
+ */
+export interface Income {
+  id: number;
+  amount: number;
+  date: string;
+  categorIncome: number | Source;
+  comment?: string | null;
+  user: number | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -231,6 +260,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'expenses';
         value: number | Expense;
+      } | null)
+    | ({
+        relationTo: 'source';
+        value: number | Source;
+      } | null)
+    | ({
+        relationTo: 'incomes';
+        value: number | Income;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -334,6 +371,29 @@ export interface ExpensesSelect<T extends boolean = true> {
   amount?: T;
   date?: T;
   category?: T;
+  comment?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "source_select".
+ */
+export interface SourceSelect<T extends boolean = true> {
+  name?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "incomes_select".
+ */
+export interface IncomesSelect<T extends boolean = true> {
+  amount?: T;
+  date?: T;
+  categorIncome?: T;
   comment?: T;
   user?: T;
   updatedAt?: T;

@@ -13,7 +13,14 @@ export type  Categories = {
     createdAt:string,
     updatedAt:string,
     user:number | User
+}
 
+export type  Sources = {
+    id:number,
+    name:string,
+    createdAt:string,
+    updatedAt:string,
+    user:number | User
 }
 
 export type  Expences = {
@@ -21,6 +28,18 @@ export type  Expences = {
     amount:number,
     date:Date,
     category:Categories,
+    comment?: string | null ,
+    createdAt:string,
+    updatedAt:string,
+    user:number | User
+
+}
+
+export type  Incomes = {
+    id:number,
+    amount:number,
+    date:Date,
+    category:Sources,
     comment?: string | null ,
     createdAt:string,
     updatedAt:string,
@@ -38,4 +57,15 @@ export type  ExpencesS = {
     updatedAt:string,
     user:number | User
 
+}
+
+export type IncomesS = {
+    id:number,
+    amount:number,
+    date:string,
+    categorIncome:number | Sources,
+    comment?: string | null,
+    createdAt:string,
+    updatedAt:string,
+    user:number | User
 }
