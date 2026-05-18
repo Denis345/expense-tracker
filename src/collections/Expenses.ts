@@ -53,7 +53,17 @@ export const Expenses:CollectionConfig =  {
             name:"category",
             type:"relationship",
             relationTo:"categories",
-            required:true
+            required:true,
+            filterOptions:({req})=>{
+                if(!req.user) return false
+
+                return{
+                    user:{
+                        equals:req.user.id
+                    }
+                }
+            },
+            
         },
         {
             name:"comment",

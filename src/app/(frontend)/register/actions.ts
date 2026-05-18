@@ -8,6 +8,7 @@ export async function registerUser(_prevState:any, FormData:FormData){
   const name = FormData.get("name") as string
   const email = FormData.get("email") as string
   const  password = FormData.get("password") as string
+  const role = "user"
 
   const payload = await getPayload({config})
 
@@ -18,7 +19,8 @@ export async function registerUser(_prevState:any, FormData:FormData){
         data:{
           name,
           email,
-          password
+          password,
+          role
         }
       }
     )
