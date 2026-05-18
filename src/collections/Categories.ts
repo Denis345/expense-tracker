@@ -53,17 +53,6 @@ export const Categories:CollectionConfig =  {
             type:"relationship",
             relationTo:"users",
             required:true,
-            filterOptions:({req})=>{
-
-                if(!req.user) return false
-
-                return{
-                    user:{
-                        equals:req.user.id
-                    }
-                }
-
-            }
         }
     ]
 }
