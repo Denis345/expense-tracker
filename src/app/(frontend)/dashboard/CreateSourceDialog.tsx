@@ -12,12 +12,13 @@ import {
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
 
-export default function Source(){
+export default function Source({newUser}:{newUser:Boolean}){
+    console.log("newUser --", newUser)
     const [CreateSourceOpen, setCreateSourceOpen] = useState(false)
     const [source, setSource] = useState('')
     const [error, setError] = useState<null | string>(null)
     const router = useRouter()
-     const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     function openDialog(){
          setCreateSourceOpen(true)
@@ -73,9 +74,20 @@ export default function Source(){
                 disabled={isLoading}
                 onClick={openDialog}
                 variant="outline"
-                className="border-slate-700 bg-slate-900/40 text-slate-200 hover:bg-slate-800 hover:text-white"
+                className="
+                    w-full justify-center gap-2
+                    border-slate-700 bg-slate-900/40 text-slate-200
+                    hover:bg-slate-800 hover:text-white
+                    lg:w-auto
+                "
                 >
                 Create Source
+
+                {newUser && (
+                    <span className="rounded-full bg-indigo-500/20 px-2 py-0.5 text-[10px] font-medium text-indigo-200">
+                    Start here
+                    </span>
+                )}
                 </Button>
 
 

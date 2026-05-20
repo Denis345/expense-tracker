@@ -13,6 +13,7 @@ export  default async function Dashboard(){
     const payload = await getPayload({config})
     const user =  await getCurrentUserForThisRequest()
     const userEmail = user.email
+    const userName = user.name
  
 
     const userCategories = await payload.find({
@@ -98,6 +99,7 @@ return(
                 userEmail={userEmail}
                 categories={userCategories.docs}
                 sources={userSources.docs}
+                userName={userName}
             />
 
             <DashBoardInfo
