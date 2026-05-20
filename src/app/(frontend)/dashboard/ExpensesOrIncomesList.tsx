@@ -161,7 +161,7 @@ export default function ExpensesOrIncomesList({
             {expances.map((expense) => (
               <div
                 key={expense.id}
-                className="rounded-xl border bg-white p-4 shadow-sm"
+                className="rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -202,7 +202,7 @@ export default function ExpensesOrIncomesList({
             {incomes.map((income) => (
               <div
                 key={income.id}
-                className="rounded-xl border bg-white p-4 shadow-sm"
+                 className="rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>

@@ -48,7 +48,7 @@ export default function DashboardHeader({userEmail, categories, sources, userNam
 
                   <div className="flex w-full flex-col gap-2 lg:flex-row lg:justify-end">
                     <CreateCategoryDialog />
-                    <CreateSourceDialog newUser={sources.length===0} />
+                    <CreateSourceDialog/>
                   </div>
 
 

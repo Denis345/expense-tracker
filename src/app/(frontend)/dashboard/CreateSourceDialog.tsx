@@ -12,8 +12,8 @@ import {
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
 
-export default function Source({newUser}:{newUser:Boolean}){
-    console.log("newUser --", newUser)
+export default function Source(){
+   
     const [CreateSourceOpen, setCreateSourceOpen] = useState(false)
     const [source, setSource] = useState('')
     const [error, setError] = useState<null | string>(null)
@@ -82,12 +82,6 @@ export default function Source({newUser}:{newUser:Boolean}){
                 "
                 >
                 Create Source
-
-                {newUser && (
-                    <span className="rounded-full bg-indigo-500/20 px-2 py-0.5 text-[10px] font-medium text-indigo-200">
-                    Start here
-                    </span>
-                )}
                 </Button>
 
 
