@@ -8,7 +8,6 @@ import LogoutButton from "./LogoutButton"
 import type {Categories, Sources} from "./types"
 
 export default function DashboardHeader({userEmail, categories, sources, userName}:{userEmail:string,categories:Categories[], sources:Sources[],userName:string}){
-
     const leftPart = userEmail.split("@")[0]
     const rightPart = userEmail.split("@")[1]
     return(
@@ -28,13 +27,16 @@ export default function DashboardHeader({userEmail, categories, sources, userNam
                   </div>
 
               <div className="flex w-full flex-col items-center gap-4 rounded-2xl border border-white/15 bg-white/10 p-4 shadow-2xl lg:w-auto lg:items-end">
+
+
+
                     <div className="flex flex-wrap items-center justify-end gap-2">
                       <div className="flex h-8 items-center gap-2 rounded-full border border-white/10 bg-slate-900/80 px-3 text-sm text-slate-300">
                         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold leading-none text-white">
                           {userEmail[0].toUpperCase()}
                         </div>
 
-                       <span className="flex items-center gap-0">
+                       <span className="flex items-center hidden gap-0 min-[435px]:flex">
                         <span className="block max-w-[40px] min-[455px]:max-w-[60] sm:max-w-[210px] truncate md:max-w-[240px] truncate">
                           {leftPart}
                         </span>
