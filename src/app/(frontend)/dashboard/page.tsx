@@ -93,7 +93,7 @@ return(
 
     <div className="min-h-screen bg-[#0f172a] px-6 py-10">
         <div className="max-w-5xl mx-auto">
-            <div className="rounded-3xl bg-slate-50 p-8 space-y-8 shadow-2xl">
+            <div className="rounded-3xl bg-slate-50 p-4 min-[490px]:p-8 space-y-8 shadow-2xl">
 
             <DashboardHeader
                 userEmail={userEmail}
