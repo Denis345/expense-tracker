@@ -61,11 +61,12 @@ export default function ExpensesOrIncomesList({
             </p>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-2  min-[550px]:flex-row">
             <Button
               type="button"
               onClick={() => setShowExpenses(true)}
               variant={showExpenses ? "default" : "outline"}
+              
             >
               Expenses
             </Button>

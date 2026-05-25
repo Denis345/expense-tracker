@@ -8,6 +8,9 @@ import LogoutButton from "./LogoutButton"
 import type {Categories, Sources} from "./types"
 
 export default function DashboardHeader({userEmail, categories, sources, userName}:{userEmail:string,categories:Categories[], sources:Sources[],userName:string}){
+
+    const leftPart = userEmail.split("@")[0]
+    const rightPart = userEmail.split("@")[1]
     return(
             <div className="flex flex-col gap-6 rounded-3xl bg-slate-950 p-8 shadow-xl lg:flex-row lg:items-start lg:justify-between">
                   <div>
@@ -31,9 +34,13 @@ export default function DashboardHeader({userEmail, categories, sources, userNam
                           {userEmail[0].toUpperCase()}
                         </div>
 
-                        <span className="max-w-[220px] truncate">
-                          {userEmail}
+                       <span className="flex items-center gap-0">
+                        <span className="block max-w-[40px] min-[455px]:max-w-[60] sm:max-w-[210px] truncate md:max-w-[240px] truncate">
+                          {leftPart}
                         </span>
+                        <span>@{rightPart}</span>
+                      </span>
+                   
                       </div>
 
                       <LogoutButton />
