@@ -12,6 +12,9 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import type { Categories, Sources, ExpencesS, IncomesS } from "./types"
 
+import {addEvent} from "@/lib/addEvent"
+import {EVENT_MESSAGES} from "@/constants/eventMessages"
+
 export default function ExpensesOrIncomesList({
   expances,
   incomes,
@@ -31,6 +34,14 @@ export default function ExpensesOrIncomesList({
     })
 
     if (res.ok) {
+      const category =
+        typeof delExpence!.category === "object"
+          ? delExpence!.category.name
+          : delExpence!.category
+
+      await addEvent(
+        `${EVENT_MESSAGES.EXPENSE_DELETED}: ${delExpence!.amount}$ from category ${category}`
+      )
       router.refresh()
     }
   }
@@ -41,6 +52,14 @@ export default function ExpensesOrIncomesList({
     })
 
     if (res.ok) {
+      const Income =
+        typeof delIncome!.categorIncome === "object"
+          ? delIncome!.categorIncome.name
+          : delIncome!.categorIncome
+
+      await addEvent(
+        `${EVENT_MESSAGES.INCOME_DELETED}: ${delIncome!.amount}$ from source ${Income}`
+      )
       router.refresh()
     }
   }

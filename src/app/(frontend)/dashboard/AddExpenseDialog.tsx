@@ -17,10 +17,17 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+import {addEvent} from "@/lib/addEvent"
+import {EVENT_MESSAGES} from "@/constants/eventMessages"
+
 import { useState } from "react"
 
 import type {Categories } from  './types'
 import { useRouter } from 'next/navigation'
+
+import {
+  ArrowDown
+} from "lucide-react"
 
 
 export default  function AddExpenseDialog({categories}:{categories:Categories[]}) {
@@ -86,6 +93,7 @@ export default  function AddExpenseDialog({categories}:{categories:Categories[]}
             console.log('data ',data.message)
             setSuccess(data.message)
             setAddExpenseIsOpen(false)
+            await addEvent(`${EVENT_MESSAGES.EXPENSE_CREATED} for ${amount}$`)
             router.refresh()
         }
         
@@ -103,9 +111,10 @@ export default  function AddExpenseDialog({categories}:{categories:Categories[]}
   }
 
   return (
-    <>
-      <Button onClick={openDialog} className="bg-indigo-600 hover:bg-indigo-500 text-white">
-        Add expense
+    <div className="flex-1   h-11">
+      <Button onClick={openDialog} className="bg-indigo-600  w-full  h-full hover:bg-indigo-500 text-white">
+        Add expense 
+        <ArrowDown className="h-10 w-10 " />
       </Button>
 
       {addExpenseIsOpen && (
@@ -193,6 +202,6 @@ export default  function AddExpenseDialog({categories}:{categories:Categories[]}
 
 
 
-    </>
+    </div>
   )
 }

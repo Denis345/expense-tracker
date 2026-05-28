@@ -11,6 +11,12 @@ import {
 
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
+import {addEvent} from "@/lib/addEvent"
+import {EVENT_MESSAGES} from "@/constants/eventMessages"
+
+import {
+  Folder
+} from "lucide-react"
 
 export default function Source(){
    
@@ -51,9 +57,9 @@ export default function Source(){
 
             if(res.ok){
                 console.log('Add Category success')
+                await addEvent(`${EVENT_MESSAGES.SOURCE_CREATED} ${source}`)
                 router.refresh()
                 closeDialog()
-                
             }
             else{
                 setError(data?.errors?.[0]?.message || "Something went wrong")
@@ -69,18 +75,13 @@ export default function Source(){
     }
 
     return(
-        <>
+        <div className="flex-1   h-11 ">
                 <Button
                 disabled={isLoading}
                 onClick={openDialog}
                 variant="outline"
-                className="
-                    w-full justify-center gap-2
-                    border-slate-700 bg-slate-900/40 text-slate-200
-                    hover:bg-slate-800 hover:text-white
-                    lg:w-auto
-                "
-                >
+                className="border-slate-700 w-full h-full bg-slate-900/40 text-slate-200 hover:bg-slate-800 hover:text-white">
+                <Folder className="h-10 w-10"></Folder>
                 Create Source
                 </Button>
 
@@ -133,6 +134,6 @@ export default function Source(){
                      </Card>
                 </div>
             )}
-        </>
+        </div>
     )
 }

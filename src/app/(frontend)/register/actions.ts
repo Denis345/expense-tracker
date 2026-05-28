@@ -11,6 +11,7 @@ export async function registerUser(_prevState:any, FormData:FormData){
   const  password = FormData.get("password") as string
   const role = "user"
 
+
   async function createDefCtegory(userId:number){
       try{
          const res = await payload.create(
@@ -44,7 +45,6 @@ export async function registerUser(_prevState:any, FormData:FormData){
       catch(error){
         console.log(error)
       }
-
   }
 
   const payload = await getPayload({config})

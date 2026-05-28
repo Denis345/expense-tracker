@@ -12,6 +12,8 @@ import {
 
 import {useState} from 'react'
 import { useRouter } from "next/navigation"
+import {addEvent} from "@/lib/addEvent"
+import {EVENT_MESSAGES} from "@/constants/eventMessages"
 
 
 export default function Login(){
@@ -40,7 +42,10 @@ export default function Login(){
           const resData = await res.json()
           console.log('----------- ',resData)
           
-          if(res.ok)router.push("/dashboard")
+          if(res.ok){
+            await addEvent(EVENT_MESSAGES.USER_LOGGED_IN)
+            router.push("/dashboard")
+          }
           else seterrorState({error:resData?.errors?.[0]?.message, success:null})
 
       }

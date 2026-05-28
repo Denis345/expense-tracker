@@ -11,6 +11,7 @@ import {Categories} from './collections/Categories'
 import {Expenses} from './collections/Expenses'
 import {Source} from './collections/Source'
 import {Incomes} from './collections/Incomes'
+import {Events} from './collections/Events'
 
 
 
@@ -24,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Expenses, Source, Incomes],
+  collections: [Users, Media, Categories, Expenses, Source, Incomes, Events],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

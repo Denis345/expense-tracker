@@ -2,6 +2,7 @@ import type { CollectionConfig } from "payload";
 
 export const Expenses:CollectionConfig =  {
     slug:"expenses",
+    timestamps: true,
     access:{
         create:  ({req}) =>  Boolean( req.user)  ,
         read:({req})=>{
@@ -12,14 +13,7 @@ export const Expenses:CollectionConfig =  {
                     }
                 }
             },
-        update:({req})=>{
-            if(!req.user)return false
-            return{
-                user:{
-                    equals:req.user.id
-                }
-            }
-        },
+        update:({req})=>false,
         delete:({req})=>{
             if(!req.user)return false
             return{

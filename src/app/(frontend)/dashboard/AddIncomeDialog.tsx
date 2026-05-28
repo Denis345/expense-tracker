@@ -17,10 +17,16 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+import {
+  ArrowUp
+} from "lucide-react"
+
 import { useState } from "react"
 
 import type {Sources } from  './types'
 import { useRouter } from 'next/navigation'
+import {addEvent} from "@/lib/addEvent"
+import {EVENT_MESSAGES} from "@/constants/eventMessages"
 
 
 export default  function AddIncomeDialog({sources}:{sources:Sources[]}) {
@@ -86,9 +92,9 @@ export default  function AddIncomeDialog({sources}:{sources:Sources[]}) {
             console.log('data ',data.message)
             setSuccess(data.message)
             setAddExpenseIsOpen(false)
+            await addEvent(`${EVENT_MESSAGES.INCOME_CREATED} for ${amount}$`)
             router.refresh()
         }
-        
     }
 
     catch(error){
@@ -103,9 +109,10 @@ export default  function AddIncomeDialog({sources}:{sources:Sources[]}) {
   }
 
   return (
-    <>
-      <Button onClick={openDialog} className="bg-indigo-600 hover:bg-indigo-500 text-white">
+    <div className="flex-1  h-11">
+      <Button onClick={openDialog} className="bg-indigo-600 w-full h-full hover:bg-indigo-500 text-white">
         Add income
+        <ArrowUp className="h-10 w-10 " />
       </Button>
 
       {addExpenseIsOpen && (
@@ -193,6 +200,6 @@ export default  function AddIncomeDialog({sources}:{sources:Sources[]}) {
 
 
 
-    </>
+    </div>
   )
 }

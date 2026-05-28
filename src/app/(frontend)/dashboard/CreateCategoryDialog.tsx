@@ -11,6 +11,12 @@ import {
 
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
+import {
+  LayoutGrid
+} from "lucide-react"
+
+import {addEvent} from "@/lib/addEvent"
+import {EVENT_MESSAGES} from "@/constants/eventMessages"
 
 export default function CreateCategoryDialog(){
     const [CreateCategoryOpen, setCreateCategoryOpen] = useState(false)
@@ -50,6 +56,7 @@ export default function CreateCategoryDialog(){
 
             if(res.ok){
                 console.log('Add Category success')
+                await addEvent(`${EVENT_MESSAGES.CATEGORY_CREATED} ${nameCategory}`)
                 router.refresh()
                 closeDialog()
                 
@@ -68,13 +75,14 @@ export default function CreateCategoryDialog(){
     }
 
     return(
-        <>
+        <div className="flex-1   h-11">
                 <Button
                 disabled={isLoading}
                 onClick={openDialog}
                 variant="outline"
-                className="border-slate-700 bg-slate-900/40 text-slate-200 hover:bg-slate-800 hover:text-white"
+                className="border-slate-700 w-full h-full bg-slate-900/40 text-slate-200 hover:bg-slate-800 hover:text-white"
                 >
+                 <LayoutGrid className="h-10 w-10" />   
                 Create category
                 </Button>
 
@@ -127,6 +135,6 @@ export default function CreateCategoryDialog(){
                      </Card>
                 </div>
             )}
-        </>
+        </div>
     )
 }
