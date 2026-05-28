@@ -104,8 +104,8 @@ export default async function Profile(){
                     key={el.id}
                     className="flex  items-center justify-between gap-6 rounded-2xl border border-slate-200 bg-stone-50 px-4 py-4 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-white hover:shadow-md"
                     >
-                    <div className="flex min-w-0 items-center gap-4">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-300 text-sm font-bold text-indigo-600">
+                    <div className="flex min-w-0 items-center gap-3">
+                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-xl bg-indigo-300 text-sm font-bold text-indigo-600">
                         •
                         </div>
 
