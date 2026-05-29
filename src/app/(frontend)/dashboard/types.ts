@@ -10,7 +10,7 @@ export type User ={
 export type  Categories = {
     id:number,
     name:string,
-    icon:string | null,
+    icon?:string | null,
     createdAt:string,
     updatedAt:string,
     user:number | User
@@ -19,7 +19,7 @@ export type  Categories = {
 export type  Sources = {
     id:number,
     name:string,
-    icon:string | null,
+    icon?:string | null,
     createdAt:string,
     updatedAt:string,
     user:number | User
