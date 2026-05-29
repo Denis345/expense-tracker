@@ -6,7 +6,7 @@ export const Source : CollectionConfig = {
         create:({req})=>Boolean(req.user), 
         read:({req})=>{
             if(!req.user) return false
-
+            if(req.user.role==="admin") return true
             return{
                 user:{
                     equals:req.user.id
@@ -55,6 +55,10 @@ export const Source : CollectionConfig = {
             type:"relationship", 
             relationTo:"users", 
             required:true
+        },
+        {
+            name:"icon",
+            type:"text",
         }
     ]
 }

@@ -10,6 +10,7 @@ export type User ={
 export type  Categories = {
     id:number,
     name:string,
+    icon:string,
     createdAt:string,
     updatedAt:string,
     user:number | User
@@ -18,9 +19,11 @@ export type  Categories = {
 export type  Sources = {
     id:number,
     name:string,
+    icon:string,
     createdAt:string,
     updatedAt:string,
     user:number | User
+
 }
 
 export type  Expences = {
@@ -68,4 +71,5 @@ export type IncomesS = {
     createdAt:string,
     updatedAt:string,
     user:number | User
+
 }

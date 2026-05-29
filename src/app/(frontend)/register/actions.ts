@@ -14,33 +14,80 @@ export async function registerUser(_prevState:any, FormData:FormData){
 
   async function createDefCtegory(userId:number){
       try{
-         const res = await payload.create(
+         const res = await Promise.all([
+            payload.create(
+            {
+              collection:"categories",
+              data:{
+                name:"products",
+                user:userId,
+                icon:"🛒"
+              }
+            }
+          ), 
+          payload.create(
           {
             collection:"categories",
             data:{
-              name:"products",
-              user:userId
+              name:"Coffee",
+              user:userId,
+              icon:"☕"
             }
           }
-        )
+          ),
+          payload.create(
+          {
+            collection:"categories",
+            data:{
+              name:"Food",
+              user:userId,
+              icon:"🍔"
+            }
+          }
+          )
+         ]) 
       }
       catch(error){
-        console.log(error)
+        console.log('----------------', error)
       }
 
   }
 
   async function createDefSource(userId:number){
       try{
-         const res = await payload.create(
-          {
-            collection:"source",
-            data:{
-              name:"salary",
-              user:userId
+         const res = await Promise.all([
+            payload.create(
+            {
+              collection:"source",
+              data:{
+                name:"salary",
+                user:userId,
+                icon:"💼"
+              }
             }
-          }
-        )
+            ),
+            payload.create(
+            {
+              collection:"source",
+              data:{
+                name:"Investments",
+                user:userId,
+                icon:"📈"
+              }
+            }
+            ),
+            payload.create(
+            {
+              collection:"source",
+              data:{
+                name:"Freelance",
+                user:userId,
+                icon:"💻"
+              }
+            }
+            )
+
+         ])
       }
       catch(error){
         console.log(error)

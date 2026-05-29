@@ -13,6 +13,7 @@ import { useState } from "react"
 import { useRouter } from 'next/navigation'
 import {addEvent} from "@/lib/addEvent"
 import {EVENT_MESSAGES} from "@/constants/eventMessages"
+import {SOURCE_ICONS} from "@/constants/iconSource"
 
 import {
   Folder
@@ -25,6 +26,7 @@ export default function Source(){
     const [error, setError] = useState<null | string>(null)
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
+    const  [icon, setIcon] = useState<null | string >(null)
 
     function openDialog(){
          setCreateSourceOpen(true)
@@ -44,7 +46,8 @@ export default function Source(){
                 method:"POST", 
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify({
-                    name:source
+                    name:source, 
+                    icon
                 })
             })
 
@@ -111,6 +114,41 @@ export default function Source(){
                                     value={source}
                                     placeholder="Salary, Freelance, Investments..."
                                 />
+
+                                <div className="space-y-2">
+                                  <p className="text-sm font-medium text-slate-700">
+                                    Choose icon
+                                  </p>
+                                
+                                  <div className="grid grid-cols-6 gap-2">
+                                    {SOURCE_ICONS.map((el) => {
+                                      const isActive = icon === el.icon
+                                
+                                      return (
+                                        <button
+                                          key={el.icon}
+                                          type="button"
+                                          onClick={() => setIcon(el.icon)}
+                                          className={`
+                                            flex h-8 w-8 items-center justify-center rounded-xl border text-xl
+                                            transition-all duration-200
+                                            hover:-translate-y-0.5 hover:scale-110 hover:shadow-md
+                                
+                                            ${
+                                              isActive
+                                                ? "border-indigo-500 bg-indigo-50 shadow-md ring-2 ring-indigo-400"
+                                                : "border-slate-200 bg-white hover:border-indigo-200"
+                                            }
+                                          `}
+                                        >
+                                          {el.icon}
+                                        </button>
+                                      )
+                                    })}
+                                  </div>
+                                </div>
+
+
                                 </div>
 
                                 {error && (

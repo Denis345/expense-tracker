@@ -181,6 +181,7 @@ export interface Category {
   id: number;
   name: string;
   user: number | User;
+  icon?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -206,6 +207,7 @@ export interface Source {
   id: number;
   name: string;
   user: number | User;
+  icon?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -377,6 +379,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
   user?: T;
+  icon?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -400,6 +403,7 @@ export interface ExpensesSelect<T extends boolean = true> {
 export interface SourceSelect<T extends boolean = true> {
   name?: T;
   user?: T;
+  icon?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,0 +1,16 @@
+export const SOURCE_ICONS = [
+  { icon: "💼", label: "Salary" },
+  { icon: "💻", label: "Freelance" },
+  { icon: "📈", label: "Investments" },
+  { icon: "🏦", label: "Savings" },
+  { icon: "🎁", label: "Gift" },
+  { icon: "🪙", label: "Crypto" },
+  { icon: "🏠", label: "Rent" },
+  { icon: "📱", label: "Side Hustle" },
+  { icon: "🎥", label: "Content" },
+  { icon: "🛒", label: "Sales" },
+  { icon: "🚕", label: "Taxi" },
+  { icon: "📦", label: "Delivery" },
+  { icon: "🎓", label: "Scholarship" },
+  { icon: "💸", label: "Cashback" },
+]

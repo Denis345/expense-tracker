@@ -7,6 +7,7 @@ export const Expenses:CollectionConfig =  {
         create:  ({req}) =>  Boolean( req.user)  ,
         read:({req})=>{
                 if(!req.user)return false
+                if(req.user.role==="admin") return true
                 return {
                     user:{
                         equals:req.user.id
@@ -16,11 +17,7 @@ export const Expenses:CollectionConfig =  {
         update:({req})=>false,
         delete:({req})=>{
             if(!req.user)return false
-            return{
-                user:{
-                    equals:req.user.id
-                }
-            }
+            return req.user.role==="admin"
         },
 
     },

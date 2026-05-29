@@ -21,15 +21,6 @@ export default function MenyButton(){
                     </Link>
                     </Button>
 
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-11 w-11 rounded-2xl bg-white/10 text-slate-200 hover:bg-white/15 hover:text-white"
-                        onClick={()=>router.push("/settings")}
-                    >
-                    <Settings className="h-5 w-5" />
-                    </Button>
-
         
         </div>
     )

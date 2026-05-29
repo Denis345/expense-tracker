@@ -156,7 +156,7 @@ export default  function AddExpenseDialog({categories}:{categories:Categories[]}
                       <SelectContent position="popper" className="max-h-60">
                         {categories.map((category) => (
                           <SelectItem key={category.id} value={String(category.id)}>
-                            {category.name}
+                            {category.icon}{category.name}
                           </SelectItem>
                         ))}
                       </SelectContent>

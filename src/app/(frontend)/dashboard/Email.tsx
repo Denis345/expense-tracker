@@ -1,4 +1,5 @@
 export default function Email ({userEmail}:{userEmail:string}){
+   
     const leftPart = userEmail.split("@")[0]
     const rightPart = userEmail.split("@")[1]
     return(
@@ -9,7 +10,7 @@ export default function Email ({userEmail}:{userEmail:string}){
             </div>
 
             <span className="flex items-center  gap-0 ">
-            <span className="block text-[18px] max-w-[40px] min-[455px]:max-w-[60] sm:max-w-[60px] truncate md:max-w-[60px] truncate">
+            <span className="block text-[18px] max-w-[40px] min-[455px]:max-w-[130px] sm:max-w-[130px] truncate md:max-w-[130px] truncate">
                 {leftPart}
             </span>
 

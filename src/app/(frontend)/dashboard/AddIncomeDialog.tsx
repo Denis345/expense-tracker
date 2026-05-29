@@ -154,7 +154,7 @@ export default  function AddIncomeDialog({sources}:{sources:Sources[]}) {
                       <SelectContent position="popper" className="max-h-60">
                         {sources.map((sours) => (
                           <SelectItem key={sours.id} value={String(sours.id)}>
-                            {sours.name}
+                            {sours.icon}{sours.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
