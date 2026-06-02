@@ -1,14 +1,12 @@
 "use server"
-
-import { getPayload } from "payload"
-import config from "@/payload.config"
 import {getCurrentUserForThisRequest} from "./getCurrentUserForThisRequest"
 
 
 export async function addEvent(action:string){
 
-    const payload = await getPayload({config})
-    const user = await getCurrentUserForThisRequest()
+    const userReq = await getCurrentUserForThisRequest()
+    const payload = userReq.payload
+    const user = userReq.user
 
 
     try{

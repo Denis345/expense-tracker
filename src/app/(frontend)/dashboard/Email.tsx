@@ -1,4 +1,4 @@
-export default function Email ({userEmail, avatarUrl}:{userEmail:string, avatarUrl:string}){
+export default function Email ({userEmail, avatarUrl}:{userEmail:string, avatarUrl:string | null | undefined}){
    
     const leftPart = userEmail.split("@")[0]
     const rightPart = userEmail.split("@")[1]
