@@ -11,8 +11,9 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog"
-
+import {addEvent} from "@/lib/addEvent"
 import {useState} from "react"
+import { useRouter } from 'next/navigation'
 
 export default function ChangePassButton(){
     const [ChangeDialog, setChangeDialog] = useState(false)
@@ -21,6 +22,8 @@ export default function ChangePassButton(){
     const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState<null | string>(null)
     const [saving, setSaving] = useState(false)
+
+    const router = useRouter() 
 
     async function handleSubmit(e: React.FormEvent){
         e.preventDefault()
@@ -56,6 +59,8 @@ export default function ChangePassButton(){
              }
              else{
                 closeChange()
+                addEvent("Change Password")
+                router.refresh()
              }
 
         }
