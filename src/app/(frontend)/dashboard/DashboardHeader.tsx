@@ -12,7 +12,7 @@ import LogoutButton from "./LogoutButton"
 import type {Categories, Sources} from "./types"
 
 
-export default function DashboardHeader({userEmail, categories, sources, userName}:{userEmail:string,categories:Categories[], sources:Sources[],userName:string}){
+export default function DashboardHeader({userEmail, categories, sources, userName, avatarUrl}:{userEmail:string,categories:Categories[], sources:Sources[],userName:string, avatarUrl:string}){
 
     return(
     <div className="flex flex-col gap-6 rounded-3xl bg-slate-950 p-8 shadow-xl lg:flex-row ">
@@ -23,7 +23,7 @@ export default function DashboardHeader({userEmail, categories, sources, userNam
             <div className="flex flex-col min-[500px]:flex-row flex-wrap items-center justify-center gap-2">
 
                 <div>
-                  <Email userEmail={userEmail}/>
+                  <Email userEmail={userEmail} avatarUrl={avatarUrl}/>
                 </div>
                 
 

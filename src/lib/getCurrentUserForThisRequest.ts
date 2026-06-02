@@ -12,5 +12,5 @@ export async function getCurrentUserForThisRequest() {
     redirect("/login")
   }
 
-  return user
+  return {user, payload }
 }

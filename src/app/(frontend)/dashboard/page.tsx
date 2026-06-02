@@ -11,9 +11,11 @@ import DashBoardInfo from './DashBoardInfo'
 export  default async function Dashboard(){
 
     const payload = await getPayload({config})
-    const user =  await getCurrentUserForThisRequest()
+    let userReq =  await getCurrentUserForThisRequest()
+    const user = userReq.user
     const userEmail = user.email
     const userName = user.name
+    const avatarUrl =  typeof(user.avatar)==="number"?  null : user?.avatar?.url
  
 
     const userCategories = await payload.find({
@@ -100,6 +102,7 @@ return(
                 categories={userCategories.docs}
                 sources={userSources.docs}
                 userName={userName}
+                avatarUrl={avatarUrl}
             />
 
             <DashBoardInfo

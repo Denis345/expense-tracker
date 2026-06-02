@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { relationship } from 'payload/shared'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -25,6 +26,11 @@ export const Users: CollectionConfig = {
         name:"name",
         type:"text",
         required:true
+      },
+      {
+        name:"avatar",
+        type:"relationship",
+        relationTo:"media"
       },
       {
         name:"role", 
