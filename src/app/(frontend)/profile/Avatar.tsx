@@ -3,7 +3,7 @@ import {useRef, useState} from "react"
 import { useRouter } from 'next/navigation'
 
 
-export default function Avatar ({userEmail, userName, userId, avatarUrl}:{userEmail:string, userName:string, userId:number, avatarUrl:string }){
+export default function Avatar ({userEmail, userName, userId, avatarUrl}:{userEmail:string, userName:string, userId:number, avatarUrl:string | null | undefined }){
     const router = useRouter() 
     const fileInputRef = useRef<HTMLInputElement | null>(null)
 
