@@ -33,7 +33,7 @@ export default function Avatar ({userEmail, userName, userId, avatarUrl}:{userEm
         }))
 
         try{
-            const res = await fetch("/api/media/", {
+            const res = await fetch("/api/media", {
                 "method":"POST", 
                 "body":formData
             })
