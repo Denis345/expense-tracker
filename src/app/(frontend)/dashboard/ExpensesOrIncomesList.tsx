@@ -234,7 +234,8 @@ export default function ExpensesOrIncomesList({
                     </p>
 
                     <p className="mt-1 text-sm font-medium text-gray-700">
-                      {income.categorIncome.icon} {(income.categorIncome as Sources).name}
+                      {(typeof income.categorIncome === "object") && income.categorIncome.icon }
+                     {(income.categorIncome as Sources).name}
                     </p>
                   </div>
 
