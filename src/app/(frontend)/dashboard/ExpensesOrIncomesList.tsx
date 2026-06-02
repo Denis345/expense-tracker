@@ -190,7 +190,10 @@ export default function ExpensesOrIncomesList({
                     </p>
 
                     <p className="mt-1 text-sm font-medium text-gray-700">
+                      
+                        {(typeof expense.category === "object") && expense.category.icon }
                       {(expense.category as Categories).name}
+                     
                     </p>
                   </div>
 
@@ -231,7 +234,7 @@ export default function ExpensesOrIncomesList({
                     </p>
 
                     <p className="mt-1 text-sm font-medium text-gray-700">
-                      {(income.categorIncome as Sources).name}
+                      {income.categorIncome.icon} {(income.categorIncome as Sources).name}
                     </p>
                   </div>
 
