@@ -34,22 +34,21 @@ export default function Avatar ({userEmail, userName, userId, avatarUrl}:{userEm
 
         try{
             const res = await fetch("/api/media", {
-                "method":"POST", 
-                "body":formData
+              method: "POST",
+              body: formData,
             })
 
-            if(!res.ok){
-              console.log("ERRROROROR", res)
+            const text = await res.text()
+
+            console.log("UPLOAD STATUS:", res.status)
+            console.log("UPLOAD TEXT:", text)
+
+            if (!res.ok) {
               return
             }
 
-            const data = await res.json()
-            console.log("dataфф1", data)
-
+            const data = JSON.parse(text)
             const idMedia = data.doc.id
-
-            console.log("dataaaaaa", data)
-            console.log("IDDDDDDDddd", idMedia)
 
             if(res.ok){
                     const res2 = await fetch(`/api/users/${userId}`, {
