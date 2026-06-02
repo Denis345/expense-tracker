@@ -1,7 +1,8 @@
 import {getCurrentUserForThisRequest} from "@/lib/getCurrentUserForThisRequest"
 import {formateDate} from "@/lib/formateDate"
 import Avatar from "./Avatar"
-// import type { Payload } from 'payload'
+
+import ChangePassButton from "./ChangePassButton"
 
 export default async function ProfileHeader(){
     const userReq =  await getCurrentUserForThisRequest()
@@ -36,6 +37,9 @@ export default async function ProfileHeader(){
           <div className="text-sm text-slate-500">
             Member since {regData}
           </div>
+          <ChangePassButton/>
+
+
         </div>
     )
 }

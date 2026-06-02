@@ -11,7 +11,7 @@ export default function  ProfileDown(){
     return(
 <Card className="border-red-900/50 bg-slate-950">
 
-    <div className="flex items-center justify-between p-6">
+    <div className="flex items-center justify-between p-6 flex-col min-[600px]:flex-row gap-4">
         
         <div className="flex items-start gap-4">
             <div className="rounded-full border border-red-500/30 p-2">
