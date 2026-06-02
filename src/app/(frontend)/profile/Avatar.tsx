@@ -38,6 +38,11 @@ export default function Avatar ({userEmail, userName, userId, avatarUrl}:{userEm
                 "body":formData
             })
 
+            if(!res.ok){
+              console.log("ERRROROROR", res)
+              return
+            }
+
             const data = await res.json()
 
             const idMedia = data.doc.id
