@@ -1,5 +1,5 @@
 "use client"
-import {useRef, useState} from "react"
+import {useRef} from "react"
 import { useRouter } from 'next/navigation'
 
 
@@ -14,7 +14,18 @@ export default function Avatar ({userEmail, userName, userId, avatarUrl}:{userEm
 
     async function saveFileName(e:any){
         const formData = new FormData()
-        console.log(e.target.files[0])
+        const file = e.target.files[0]
+
+        console.log("SIZE MB:", file.size / 1024 / 1024)
+        console.log("TYPE:", file.type)
+
+        const maxSize = 2 * 1024 * 1024
+
+          if (file.size > maxSize) {
+            alert("Image is too large. Please upload image under 2MB.")
+            e.target.value = ""
+            return
+          }
 
         formData.append("file", e.target.files[0])
         formData.append("_payload",JSON.stringify({
