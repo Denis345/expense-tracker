@@ -44,6 +44,7 @@ export default function Avatar ({userEmail, userName, userId, avatarUrl}:{userEm
             }
 
             const data = await res.json()
+            console.log("dataфф1", data)
 
             const idMedia = data.doc.id
 
