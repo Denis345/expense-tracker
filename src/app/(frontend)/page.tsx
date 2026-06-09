@@ -2,6 +2,7 @@ import { headers as getHeaders } from "next/headers"
 import { getPayload } from "payload"
 import config from "@/payload.config"
 import Link from "next/link"
+import Head from 'next/head'
 
 export default async function HomePage() {
   const headers = await getHeaders()

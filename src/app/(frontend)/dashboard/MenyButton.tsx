@@ -1,11 +1,8 @@
-"use client"
-import { User, Settings } from "lucide-react"
+import { User } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 
 export default function MenyButton(){
-    const router = useRouter()
     return(
         <div className="flex gap-2 border-red-500">
             
