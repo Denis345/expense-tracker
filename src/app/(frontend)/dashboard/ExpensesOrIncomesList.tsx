@@ -64,206 +64,200 @@ export default function ExpensesOrIncomesList({
     }
   }
 
-  return (
-    <Card>
-      <CardHeader>
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <CardTitle>
-              {showExpenses ? "Expenses" : "Incomes"}
-            </CardTitle>
+return (
+  <Card className="rounded-2xl border-0 bg-[var(--card)] shadow-[var(--shadow-card)]">
 
-            <p className="text-sm text-gray-500">
-              {showExpenses
-                ? "Your latest spending records"
-                : "Your latest income records"}
+    <CardHeader>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <CardTitle className="text-[var(--text-primary)]">
+            {showExpenses ? "Expenses" : "Incomes"}
+          </CardTitle>
+          <p className="text-sm text-[var(--text-muted)]">
+            {showExpenses
+              ? "Your latest spending records"
+              : "Your latest income records"}
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-2 min-[550px]:flex-row">
+          <Button
+            type="button"
+            onClick={() => setShowExpenses(true)}
+            variant={showExpenses ? "default" : "outline"}
+            className="bg-[var(--primary)] text-[var(--primary-foreground)]"
+          >
+            Expenses
+          </Button>
+
+          <Button
+            type="button"
+            onClick={() => setShowExpenses(false)}
+            variant={!showExpenses ? "default" : "outline"}
+            className="bg-[var(--primary)] text-[var(--primary-foreground)]"
+          >
+            Incomes
+          </Button>
+        </div>
+      </div>
+    </CardHeader>
+
+    <CardContent>
+      {/* Delete expense modal */}
+      {delExpence && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+          <div className="w-full max-w-sm rounded-2xl bg-[var(--card)] p-6 shadow-[var(--shadow-card)]">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
+              Delete expense?
+            </h2>
+            <p className="mt-2 text-sm text-[var(--text-muted)]">
+              Are you sure you want to delete expense for{" "}
+              <span className="font-medium text-[var(--text-primary)]">
+                ${delExpence.amount}
+              </span>
+              ? This action cannot be undone.
             </p>
-          </div>
-
-          <div className="flex flex-col gap-2  min-[550px]:flex-row">
-            <Button
-              type="button"
-              onClick={() => setShowExpenses(true)}
-              variant={showExpenses ? "default" : "outline"}
-              
-            >
-              Expenses
-            </Button>
-
-            <Button
-              type="button"
-              onClick={() => setShowExpenses(false)}
-              variant={!showExpenses ? "default" : "outline"}
-            >
-              Incomes
-            </Button>
+            <div className="mt-6 flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setDelExpence(null)}>
+                Cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  deleteExpance(delExpence);
+                  setDelExpence(null);
+                }}
+                className="bg-[var(--destructive)] text-[var(--destructive-foreground)]"
+              >
+                Delete
+              </Button>
+            </div>
           </div>
         </div>
-      </CardHeader>
+      )}
 
-      <CardContent>
-        {delExpence && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-            <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
-              <h2 className="text-lg font-semibold text-slate-950">
-                Delete expense?
-              </h2>
-
-              <p className="mt-2 text-sm text-slate-500">
-                Are you sure you want to delete expense for{" "}
-                <span className="font-medium text-slate-900">
-                  ${delExpence.amount}
-                </span>
-                ? This action cannot be undone.
-              </p>
-
-              <div className="mt-6 flex justify-end gap-2">
-                <Button
-                  variant="outline"
-                  onClick={() => setDelExpence(null)}
-                >
-                  Cancel
-                </Button>
-
-                <Button
-                  onClick={() => {
-                    deleteExpance(delExpence)
-                    setDelExpence(null)
-                  }}
-                  className="bg-red-600 text-white hover:bg-red-500"
-                >
-                  Delete
-                </Button>
-              </div>
+      {/* Delete income modal */}
+      {delIncome && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+          <div className="w-full max-w-sm rounded-2xl bg-[var(--card)] p-6 shadow-[var(--shadow-card)]">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
+              Delete income?
+            </h2>
+            <p className="mt-2 text-sm text-[var(--text-muted)]">
+              Are you sure you want to delete income for{" "}
+              <span className="font-medium text-[var(--text-primary)]">
+                ${delIncome.amount}
+              </span>
+              ? This action cannot be undone.
+            </p>
+            <div className="mt-6 flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setDelIncome(null)}>
+                Cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  deleteIncome(delIncome);
+                  setDelIncome(null);
+                }}
+                className="bg-[var(--destructive)] text-[var(--destructive-foreground)]"
+              >
+                Delete
+              </Button>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {delIncome && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-            <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
-              <h2 className="text-lg font-semibold text-slate-950">
-                Delete income?
-              </h2>
+      {/* Expenses list */}
+      {showExpenses ? (
+        <div className="space-y-3">
+          {expances.map((expense) => (
+            <div
+              key={expense.id}
+              className="rounded-xl border bg-[var(--card)] p-4 shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[var(--shadow-card)]"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p
+                    className={`text-2xl font-bold tracking-tight ${
+                      expense.amount >= 0
+                        ? "text-[var(--success)]"
+                        : "text-[var(--destructive)]"
+                    }`}
+                  >
+                    ${expense.amount}
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-[var(--text-secondary)]">
+                    {typeof expense.category === "object" && expense.category.icon}{" "}
+                    {(expense.category as Categories).name}
+                  </p>
+                </div>
 
-              <p className="mt-2 text-sm text-slate-500">
-                Are you sure you want to delete income for{" "}
-                <span className="font-medium text-slate-900">
-                  ${delIncome.amount}
-                </span>
-                ? This action cannot be undone.
-              </p>
-
-              <div className="mt-6 flex justify-end gap-2">
-                <Button
-                  variant="outline"
-                  onClick={() => setDelIncome(null)}
-                >
-                  Cancel
-                </Button>
-
-                <Button
-                  onClick={() => {
-                    deleteIncome(delIncome)
-                    setDelIncome(null)
-                  }}
-                  className="bg-red-600 text-white hover:bg-red-500"
-                >
-                  Delete
-                </Button>
+                <div className="flex flex-col items-end gap-2">
+                  <p className="text-xs text-[var(--text-muted)]">
+                    {new Date(expense.date).toLocaleDateString()}
+                  </p>
+                  <Button
+                    variant="ghost"
+                    onClick={() => setDelExpence(expense)}
+                    className="h-7 px-2 text-xs text-[var(--destructive)] hover:bg-[var(--destructive)]/10 hover:text-[var(--destructive-foreground)]"
+                  >
+                    Delete
+                  </Button>
+                </div>
               </div>
+
+              {expense.comment && (
+                <p className="mt-3 rounded-md bg-[var(--secondary-surface)] px-3 py-2 text-sm text-[var(--text-secondary)]">
+                  {expense.comment}
+                </p>
+              )}
             </div>
-          </div>
-        )}
-
-        {showExpenses ? (
-          <div className="space-y-3">
-            {expances.map((expense) => (
-              <div
-                key={expense.id}
-                className="rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-2xl font-bold text-black">
-                      ${expense.amount}
-                    </p>
-
-                    <p className="mt-1 text-sm font-medium text-gray-700">
-                      
-                        {(typeof expense.category === "object") && expense.category.icon }
-                      {(expense.category as Categories).name}
-                     
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col items-end gap-2">
-                    <p className="text-xs text-gray-500">
-                      {new Date(expense.date).toLocaleDateString()}
-                    </p>
-
-                    <Button
-                      variant="ghost"
-                      onClick={() => setDelExpence(expense)}
-                      className="h-7 px-2 text-xs text-red-500 hover:bg-red-50 hover:text-red-600"
-                    >
-                      Delete
-                    </Button>
-                  </div>
+          ))}
+        </div>
+      ) : (
+        /* Incomes list */
+        <div className="space-y-3">
+          {incomes.map((income) => (
+            <div
+              key={income.id}
+              className="rounded-xl border bg-[var(--card)] p-4 shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[var(--shadow-card)]"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-2xl font-bold tracking-tight text-[var(--success)]">
+                    ${income.amount}
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-[var(--text-secondary)]">
+                    {typeof income.categorIncome === "object" &&
+                      income.categorIncome.icon}{" "}
+                    {(income.categorIncome as Sources).name}
+                  </p>
                 </div>
 
-                {expense.comment && (
-                  <p className="mt-3 rounded-md bg-gray-50 px-3 py-2 text-sm text-gray-600">
-                    {expense.comment}
+                <div className="flex flex-col items-end gap-2">
+                  <p className="text-xs text-[var(--text-muted)]">
+                    {new Date(income.date).toLocaleDateString()}
                   </p>
-                )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {incomes.map((income) => (
-              <div
-                key={income.id}
-                 className="rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-2xl font-bold text-black">
-                      ${income.amount}
-                    </p>
-
-                    <p className="mt-1 text-sm font-medium text-gray-700">
-                      {(typeof income.categorIncome === "object") && income.categorIncome.icon }
-                     {(income.categorIncome as Sources).name}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col items-end gap-2">
-                    <p className="text-xs text-gray-500">
-                      {new Date(income.date).toLocaleDateString()}
-                    </p>
-
-                    <Button
-                      variant="ghost"
-                      onClick={() => setDelIncome(income)}
-                      className="h-7 px-2 text-xs text-red-500 hover:bg-red-50 hover:text-red-600"
-                    >
-                      Delete
-                    </Button>
-                  </div>
+                  <Button
+                    variant="ghost"
+                    onClick={() => setDelIncome(income)}
+                    className="h-7 px-2 text-xs text-[var(--destructive)] hover:bg-[var(--destructive)]/10 hover:text-[var(--destructive-foreground)]"
+                  >
+                    Delete
+                  </Button>
                 </div>
-
-                {income.comment && (
-                  <p className="mt-3 rounded-md bg-gray-50 px-3 py-2 text-sm text-gray-600">
-                    {income.comment}
-                  </p>
-                )}
               </div>
-            ))}
-          </div>
-        )}
-      </CardContent>
-    </Card>
-  )
+
+              {income.comment && (
+                <p className="mt-3 rounded-md bg-[var(--secondary-surface)] px-3 py-2 text-sm text-[var(--text-secondary)]">
+                  {income.comment}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </CardContent>
+  </Card>
+)
 }

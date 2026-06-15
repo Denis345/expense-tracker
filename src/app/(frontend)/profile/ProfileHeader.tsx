@@ -19,27 +19,35 @@ export default async function ProfileHeader(){
 
     console.log("avatarUrl",avatarUrl)
     
-    return(
-        
-        <div className="flex flex-col items-center gap-2 rounded-3xl border border-slate-800 bg-slate-900 p-8 text-white shadow-xl">
-           
-           <Avatar userEmail={userEmail} userName={userName}  userId={userId} avatarUrl={avatarUrl}/>
+return (
+  <div className="flex flex-col items-center gap-2 rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8 text-[var(--text-primary)] shadow-[var(--shadow-card)]">
 
+    {/* Аватар */}
+    <Avatar
+      userEmail={userEmail}
+      userName={userName}
+      userId={userId}
+      avatarUrl={avatarUrl}
+    />
 
-          <div className="mt-2 text-base font-semibold text-white">
-            {userName}
-          </div>
+    {/* Имя пользователя */}
+    <div className="mt-2 text-base font-semibold text-[var(--text-primary)]">
+      {userName}
+    </div>
 
-          <div className="text-sm text-slate-400">
-            {userEmail}
-          </div>
+    {/* Email */}
+    <div className="text-sm text-[var(--text-secondary)]">
+      {userEmail}
+    </div>
 
-          <div className="text-sm text-slate-500">
-            Member since {regData}
-          </div>
-          <ChangePassButton/>
+    {/* Дата регистрации */}
+    <div className="text-sm text-[var(--text-muted)]">
+      Member since {regData}
+    </div>
 
+    {/* Кнопка смены пароля */}
+    <ChangePassButton />
 
-        </div>
-    )
+  </div>
+);
 }

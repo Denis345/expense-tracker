@@ -6,38 +6,169 @@
 
 :root {
   --font-mono: 'Roboto Mono', monospace;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* =============================== */
+  /* LIGHT THEME */
+  /* =============================== */
+
+  /* Общий фон страницы */
+  --background: #F7F8FA;
+  --foreground: #0F172A;
+
+  /* Основные карточки */
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+
+  /* Всплывающие окна / dropdown / popover */
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+
+  /* Основные кнопки: Add expense, Add income */
+  --primary: #6366F1;
+  --primary-foreground: #FFFFFF;
+
+  /* Вторичные кнопки: Create category, Create Source, Change Password */
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+
+  /* Второстепенные поверхности: маленькие карточки, input, history rows */
+  --secondary-surface: #F1F3FF;
+
+  /* Muted-блоки: подписи, спокойные фоны */
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+
+  /* Акцент: Welcome back, активные табы, иконки, ссылки */
+  --accent: #4F46E5;
+  --accent-foreground: #FFFFFF;
+
+  /* Основной текст */
+  --text-primary: #0F172A;
+
+  /* Вторичный текст: описания, email, подзаголовки */
+  --text-secondary: #334155;
+
+  /* Слабый текст: даты, Updated now, helper text */
+  --text-muted: #64748B;
+
+  /* Успешные значения: баланс, доход */
+  --success: #10B981;
+
+  /* Ошибки / Delete / Logout */
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --danger: #EF4444;
+
+  /* Границы */
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #6366F1;
+
+  /* Тени */
+  --shadow-color: #CBD5E1;
+  --shadow-card: 10px 10px 30px rgba(203, 213, 225, 0.35);
+  --shadow-soft: 0 4px 16px rgba(203, 213, 225, 0.25);
+  --shadow-button: 0 8px 18px rgba(99, 102, 241, 0.28);
+
+  /* Графики */
+  --chart-1: #6366F1;
+  --chart-2: #10B981;
+  --chart-3: #F59E0B;
+  --chart-4: #EF4444;
+  --chart-5: #8B5CF6;
+
+  /* Sidebar, если он появится */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #0F172A;
+  --sidebar-primary: #6366F1;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F1F3FF;
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #6366F1;
+}
+
+.dark {
+  /* =============================== */
+  /* DARK THEME */
+  /* =============================== */
+
+  /* Общий фон страницы */
+  --background: #0B0F17;
+  --foreground: #F2F5FA;
+
+  /* Основные карточки */
+  --card: #131A25;
+  --card-foreground: #F2F5FA;
+
+  /* Всплывающие окна / dropdown / popover */
+  --popover: #131A25;
+  --popover-foreground: #F2F5FA;
+
+  /* Основные кнопки: Add expense, Add income */
+  --primary: #6C4DFF;
+  --primary-foreground: #FFFFFF;
+
+  /* Вторичные кнопки: Create category, Create Source, Change Password */
+  --secondary: #1E2633;
+  --secondary-foreground: #C7CFDE;
+
+  /* Второстепенные поверхности: маленькие карточки, input, history rows */
+  --secondary-surface: #0F1620;
+
+  /* Muted-блоки: подписи, спокойные фоны */
+  --muted: #1E2633;
+  --muted-foreground: #8B96AA;
+
+  /* Акцент: Welcome back, активные табы, иконки, ссылки */
+  --accent: #8B5CF6;
+  --accent-foreground: #FFFFFF;
+
+  /* Основной текст */
+  --text-primary: #F2F5FA;
+
+  /* Вторичный текст: описания, email, подзаголовки */
+  --text-secondary: #C7CFDE;
+
+  /* Слабый текст: даты, Updated now, helper text */
+  --text-muted: #8B96AA;
+
+  /* Успешные значения: баланс, доход */
+  --success: #22C55E;
+
+  /* Ошибки / Delete / Logout */
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --danger: #EF4444;
+
+  /* Границы */
+  --border: #293244;
+  --input: #293244;
+  --ring: #6C4DFF;
+
+  /* Тени / glow */
+  --shadow-color: #6C4DFF;
+  --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.45);
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-button: 0 10px 24px rgba(108, 77, 255, 0.32);
+
+  /* Графики */
+  --chart-1: #6C4DFF;
+  --chart-2: #22C55E;
+  --chart-3: #F59E0B;
+  --chart-4: #EF4444;
+  --chart-5: #8B5CF6;
+
+  /* Sidebar, если он появится */
+  --sidebar: #131A25;
+  --sidebar-foreground: #F2F5FA;
+  --sidebar-primary: #6C4DFF;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #1E2633;
+  --sidebar-accent-foreground: #C7CFDE;
+  --sidebar-border: #293244;
+  --sidebar-ring: #6C4DFF;
 }
 
 * {
@@ -64,7 +195,6 @@ body {
   line-height: 32px;
 
   margin: 0;
-  color: rgb(1000, 1000, 1000);
 
   @media (max-width: 1024px) {
     font-size: 15px;
@@ -244,39 +374,7 @@ svg {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
+
 
 @layer base {
   * {

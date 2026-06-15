@@ -33,14 +33,23 @@ export default  function LogoutButton(){
 
     }
 
-    return(
-
-        <Button  disabled={isLoading}
-        onClick={logout}
-        variant="outline"
-        className="h-11 w-18 text-red-300 border-slate-700 bg-slate-900/40  hover:bg-slate-800 hover:text-white"
-        >
-         {isLoading ? "Logout..." : "Logout"}
-        </Button>
-    )
+return (
+  <Button
+    disabled={isLoading}
+    onClick={logout}
+    variant="outline"
+    className="
+      h-11 w-18
+      bg-[var(--secondary)]
+      text-[var(--destructive)]
+      border border-[var(--border)]
+      hover:bg-[var(--secondary-surface)]
+      hover:text-[var(--destructive-foreground)]
+      shadow-[var(--shadow-button)]
+      transition-all
+    "
+  >
+    {isLoading ? "Logout..." : "Logout"}
+  </Button>
+)
 }

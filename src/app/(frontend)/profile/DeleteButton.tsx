@@ -39,59 +39,71 @@ export default function DeleteButton(){
 
     }
 
-    return(
-        <div>
-            <Button
-                onClick={()=>setdeleteAcc(true)}
-                variant="outline"
-                className="border-red-500 text-red-500 bg-slate-950 hover:bg-red-600"
-                >
-                Delete Account
-            </Button>
+    return (
+  <div>
 
-            <Dialog open={deleteAcc} onOpenChange={setdeleteAcc}>
-                    <DialogContent className="rounded-2xl">
-                        <DialogHeader>
-                                <DialogTitle className="text-red-500">
-                                    Delete account?
-                                </DialogTitle>
+    {/* Delete Account Button */}
+    <Button
+      onClick={() => setdeleteAcc(true)}
+      variant="outline"
+      className="
+        h-11
+        w-auto
+        border border-[var(--destructive)]
+        bg-[var(--secondary)]
+        text-[var(--destructive)]
+        hover:bg-[var(--destructive)]
+        hover:text-[var(--destructive-foreground)]
+        transition-all
+      "
+    >
+      Delete Account
+    </Button>
 
-                                <DialogDescription>
-                                    This action cannot be undone. This will permanently delete your
-                                    account and all associated data.
-                                </DialogDescription>
-                        </DialogHeader>
+    {/* Delete Account Dialog */}
+    <Dialog open={deleteAcc} onOpenChange={setdeleteAcc}>
+      <DialogContent className="rounded-2xl bg-[var(--card)] text-[var(--text-primary)] shadow-[var(--shadow-card)] p-6">
+        
+        <DialogHeader>
+          <DialogTitle className="text-[var(--destructive)]">Delete account?</DialogTitle>
+          <DialogDescription className="text-[var(--text-muted)]">
+            This action cannot be undone. This will permanently delete your
+            account and all associated data.
+          </DialogDescription>
+        </DialogHeader>
 
-                        <DialogFooter>
-                            <Button
-                                disabled={isDeleting}
-                                variant="outline"
-                                onClick={() => setdeleteAcc(false)}
-                            >
-                                Cancel
-                            </Button>
+        <DialogFooter className="flex justify-end gap-2 mt-4">
 
-                        <Button
-                            disabled={isDeleting}
-                            variant="destructive"
-                            onClick={handleDeleteAccount}
-                        >
-                            {isDeleting? ( "Deleting Account..."): " Delete Account"}
-                           
-                        </Button>
+          {/* Cancel Button */}
+          <Button
+            disabled={isDeleting}
+            variant="outline"
+            onClick={() => setdeleteAcc(false)}
+            className="border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary-surface)] hover:text-[var(--text-primary)]"
+          >
+            Cancel
+          </Button>
 
-                        {error && (
-                            <p className="text-sm text-red-500">
-                            {error}
-                            </p>
-                        )}
+          {/* Delete Button */}
+          <Button
+            disabled={isDeleting}
+            variant="destructive"
+            onClick={handleDeleteAccount}
+            className="bg-[var(--destructive)] text-[var(--destructive-foreground)] shadow-[var(--shadow-button)] hover:opacity-90"
+          >
+            {isDeleting ? "Deleting Account..." : "Delete Account"}
+          </Button>
 
-                        </DialogFooter>
-                    </DialogContent>
+        </DialogFooter>
 
-            </Dialog>
+        {/* Error message */}
+        {error && (
+          <p className="text-sm text-[var(--destructive)] mt-2">{error}</p>
+        )}
 
-        </div>
+      </DialogContent>
+    </Dialog>
 
-    )
+  </div>
+);
 }

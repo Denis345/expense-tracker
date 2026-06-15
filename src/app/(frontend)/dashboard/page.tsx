@@ -8,6 +8,18 @@ import ExpensesOrIncomesList from "./ExpensesOrIncomesList"
 import DashboardHeader from './DashboardHeader'
 import DashBoardInfo from './DashBoardInfo'
 
+import { Metadata  } from "next"
+
+export const metadata: Metadata = {
+        title: "User Dashboard",
+        description:
+            "View your expenses, income, balance, and spending statistics in one simple personal finance dashboard.",
+        robots:{
+            index:false, 
+            follow:false
+        }
+}
+
 export  default async function Dashboard(){
 
     const payload = await getPayload({config})
@@ -91,38 +103,37 @@ export  default async function Dashboard(){
 
 
 
-return(
+return (
+  <div className="min-h-screen bg-[var(--background)] px-6 py-10 text-[var(--text-primary)]">
+    <div className="max-w-5xl mx-auto">
+      <div className="rounded-3xl bg-[var(--card)] p-4 min-[490px]:p-8 space-y-8 shadow-[var(--shadow-card)]">
 
-    <div className="min-h-screen bg-[#0f172a] px-6 py-10">
-        <div className="max-w-5xl mx-auto">
-            <div className="rounded-3xl  bg-slate-50 p-4 min-[490px]:p-8 space-y-8 shadow-2xl">
+        {/* Header */}
+        <DashboardHeader
+          userEmail={userEmail}
+          categories={userCategories.docs}
+          sources={userSources.docs}
+          userName={userName}
+          avatarUrl={avatarUrl}
+        />
 
-            <DashboardHeader
-                userEmail={userEmail}
-                categories={userCategories.docs}
-                sources={userSources.docs}
-                userName={userName}
-                avatarUrl={avatarUrl}
-            />
+        {/* Info / Stats */}
+        <DashBoardInfo
+          balance={Number(balance)}
+          totalExpances={Number(totalExpances)}
+          categoriesLen={Number(categoriesLen)}
+          totalMonthExpences={Number(totalMonthExpences)}
+          totalTrans={Number(totalTrans)}
+        />
 
-            <DashBoardInfo
-                balance= {Number(balance)}
-                totalExpances={Number(totalExpances)}
-                categoriesLen={Number(categoriesLen)}
-                totalMonthExpences={Number(totalMonthExpences)}
-                totalTrans={Number(totalTrans)}
-                >
-            </DashBoardInfo>
+        {/* Expenses / Incomes List */}
+        <ExpensesOrIncomesList
+          expances={userExpences.docs}
+          incomes={userIncomes.docs}
+        />
 
-           
-
-
-            <ExpensesOrIncomesList expances = {userExpences.docs} incomes = {userIncomes.docs}  >
-
-            </ExpensesOrIncomesList>
-
-            </div>
-        </div>
+      </div>
     </div>
-)
+  </div>
+);
 }

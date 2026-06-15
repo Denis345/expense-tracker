@@ -24,9 +24,9 @@ export default function Login(){
     const [isLoading, setIsLoading] = useState(false)
 
     async function tryLogin(event:React.ChangeEvent<HTMLFormElement>){
-      setIsLoading(true)
       event.preventDefault()
-
+      setIsLoading(true)
+      
       const formData = new FormData(event.currentTarget)
       
       const email = formData.get("email") as string
@@ -40,9 +40,13 @@ export default function Login(){
           })
 
           const resData = await res.json()
-          console.log('----------- ',resData)
-          
           if(res.ok){
+            const theme = resData.user.theme
+            console.log('-----------theme------------ ',resData.user.theme)
+            document.documentElement.classList.toggle("dark", theme === "dark")
+            document.cookie = `theme=${theme}; Path=/; Max-Age=31536000; SameSite=Lax`
+            
+
             await addEvent(EVENT_MESSAGES.USER_LOGGED_IN)
             router.push("/dashboard")
           }

@@ -1,13 +1,6 @@
-import { headers as getHeaders } from "next/headers"
-import { getPayload } from "payload"
-import config from "@/payload.config"
+
 import Link from "next/link"
 export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-
-  const { user } = await payload.auth({ headers })
 
   return (
     <>
@@ -32,8 +25,6 @@ export default async function HomePage() {
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {!user ? (
-                    <>
                       <Link
                         href="/register"
                         className="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-indigo-500"
@@ -47,15 +38,6 @@ export default async function HomePage() {
                     >
                       Login
                     </Link>
-                    </>
-                  ) : (
-                    <Link
-                      href="/dashboard"
-                      className="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-indigo-500"
-                    >
-                      Go to dashboard
-                    </Link>
-                  )}
                 </div>
               </div>
 
@@ -63,24 +45,24 @@ export default async function HomePage() {
               <div className="relative">
                 <div className="rounded-3xl bg-slate-950 p-6 shadow-2xl">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="rounded-2xl bg-indigo-50 p-5">
-                      <p className="text-sm text-slate-500">Total expenses</p>
+                    <div className="flex flex-col rounded-2xl justify-center items-center bg-indigo-50 p-5 ">
+                      <p className="text-sm text-slate-500 break-words">Expenses</p>
 
-                      <p className="mt-2 text-3xl font-bold text-indigo-600">
+                      <p className="mt-2 text-xl min-[450px]:text-3xl font-bold text-indigo-600">
                         $129
                       </p>
                     </div>
 
-                    <div className="rounded-2xl bg-emerald-50 p-5">
-                      <p className="text-sm text-slate-500">Categories</p>
+                    <div className=" flex flex-col  items-center rounded-2xl bg-emerald-50 p-5">
+                      <p className=" text-sm text-slate-500">Income</p>
 
-                      <p className="mt-2 text-3xl font-bold text-emerald-600">
+                      <p className="mt-2 text-xl min-[450px]:text-3xl font-bold text-emerald-600">
                         12
                       </p>
                     </div>
 
                     <div className="col-span-2 rounded-2xl bg-white p-5">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center  justify-between">
                         <div>
                           <p className="text-lg font-semibold text-slate-900">
                             Starbucks

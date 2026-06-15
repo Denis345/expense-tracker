@@ -27,6 +27,24 @@ export const Users: CollectionConfig = {
         type:"text",
         required:true
       },
+      
+      {
+        name:"theme",
+        type:"select",
+        defaultValue:"dark",
+        required:true,
+        options:[
+              {
+                label: "Light",
+                value: "light",
+              },
+              {
+                label: "Dark",
+                value: "dark",
+              },
+               ]
+      },
+
       {
         name:"avatar",
         type:"relationship",

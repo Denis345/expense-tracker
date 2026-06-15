@@ -77,101 +77,110 @@ export default function Source(){
         }
     }
 
-    return(
-        <div className="flex-1   h-11 ">
+return (
+  <div className="flex-1 h-11">
+    <Button
+      disabled={isLoading}
+      onClick={openDialog}
+      className="w-full h-full bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)] hover:bg-slate-800 hover:text-white"
+    >
+      <Folder className="h-10 w-10" />
+      Create Source
+    </Button>
+
+    {CreateSourceOpen && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+        <Card className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--card)] text-[var(--text-primary)] shadow-[var(--shadow-card)]">
+          <CardHeader>
+            <CardTitle className="text-[var(--text-primary)]">Add Source</CardTitle>
+            <p className="text-sm text-[var(--text-muted)]">
+              Create income Source.
+            </p>
+          </CardHeader>
+
+          <CardContent>
+            <div className="space-y-5">
+
+              {/* Name */}
+              <div className="space-y-2">
+                <Label className="text-[var(--text-secondary)]">Name</Label>
+                <Input
+                  onChange={(e) => {
+                    setSource(e.target.value);
+                    setError(null);
+                  }}
+                  name="name"
+                  type="text"
+                  value={source}
+                  placeholder="Salary, Freelance, Investments..."
+                  className="w-full rounded-md border border-[var(--border)] bg-[var(--secondary-surface)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:ring-2 focus:ring-[var(--ring)]"
+                />
+              </div>
+
+              {/* Choose Icon */}
+              <div className="space-y-2">
+                <p className="text-sm font-medium text-[var(--text-secondary)]">
+                  Choose icon
+                </p>
+                <div className="grid grid-cols-6 gap-2">
+                  {SOURCE_ICONS.map((el) => {
+                    const isActive = icon === el.icon;
+                    return (
+                      <button
+                        key={el.icon}
+                        type="button"
+                        onClick={() => setIcon(el.icon)}
+                        className={`
+                          flex h-8 w-8 items-center justify-center rounded-xl border text-xl
+                          transition-all duration-200
+                          hover:-translate-y-0.5 hover:scale-110 hover:shadow-md
+                          ${
+                            isActive
+                              ? "border-[var(--accent)] bg-[var(--accent)]/10 shadow-[var(--shadow-soft)] ring-2 ring-[var(--accent)]"
+                              : "border-[var(--border)] bg-[var(--secondary-surface)] hover:border-[var(--accent)]"
+                          }
+                        `}
+                      >
+                        {el.icon}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Error */}
+              {error && (
+                <div className="rounded-md border border-[var(--destructive)]/30 bg-[var(--destructive)]/10 px-3 py-2 text-sm text-[var(--destructive)]">
+                  {error}
+                </div>
+              )}
+
+              {/* Footer Buttons */}
+              <div className="flex justify-end gap-2 border-t border-[var(--border)] pt-4">
                 <Button
-                disabled={isLoading}
-                onClick={openDialog}
-                variant="outline"
-                className="border-slate-700 w-full h-full bg-slate-900/40 text-slate-200 hover:bg-slate-800 hover:text-white">
-                <Folder className="h-10 w-10"></Folder>
-                Create Source
+                  type="button"
+                  variant="outline"
+                  onClick={closeDialog}
+                  className="border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary-surface)]"
+                >
+                  Cancel
                 </Button>
 
+                <Button
+                  disabled={isLoading}
+                  type="button"
+                  onClick={saveCategory}
+                  className="bg-[var(--primary)] text-[var(--primary-foreground)] shadow-[var(--shadow-button)] hover:opacity-90 disabled:opacity-60"
+                >
+                  {isLoading ? "Save source..." : "Save source"}
+                </Button>
+              </div>
 
-            {CreateSourceOpen && (
-                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-                     <Card className="w-full max-w-md rounded-2xl shadow-xl">
-                            <CardHeader>
-                            <CardTitle>Add Source</CardTitle>
-                            <p className="text-sm text-gray-500">
-                                Create income Source.
-                            </p>
-                            </CardHeader>
-
-                            <CardContent>
-                            <div className="space-y-5">
-                                <div className="space-y-2">
-                                <Label>Name</Label>
-
-                                <Input
-                                    onChange={(e) => {
-                                    setSource(e.target.value)
-                                    setError(null)
-                                    }}
-                                    name="name"
-                                    type="text"
-                                    value={source}
-                                    placeholder="Salary, Freelance, Investments..."
-                                />
-
-                                <div className="space-y-2">
-                                  <p className="text-sm font-medium text-slate-700">
-                                    Choose icon
-                                  </p>
-                                
-                                  <div className="grid grid-cols-6 gap-2">
-                                    {SOURCE_ICONS.map((el) => {
-                                      const isActive = icon === el.icon
-                                
-                                      return (
-                                        <button
-                                          key={el.icon}
-                                          type="button"
-                                          onClick={() => setIcon(el.icon)}
-                                          className={`
-                                            flex h-8 w-8 items-center justify-center rounded-xl border text-xl
-                                            transition-all duration-200
-                                            hover:-translate-y-0.5 hover:scale-110 hover:shadow-md
-                                
-                                            ${
-                                              isActive
-                                                ? "border-indigo-500 bg-indigo-50 shadow-md ring-2 ring-indigo-400"
-                                                : "border-slate-200 bg-white hover:border-indigo-200"
-                                            }
-                                          `}
-                                        >
-                                          {el.icon}
-                                        </button>
-                                      )
-                                    })}
-                                  </div>
-                                </div>
-
-
-                                </div>
-
-                                {error && (
-                                <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
-                                    {error}
-                                </div>
-                                )}
-
-                                <div className="flex justify-end gap-2 border-t pt-4">
-                                <Button type="button" variant="outline" onClick={closeDialog}>
-                                    Cancel
-                                </Button>
-
-                                <Button disabled={isLoading}  type="button" onClick={saveCategory}>
-                                    {isLoading ?"Save source..."  :  "Save source"}
-                                </Button>
-                                </div>
-                            </div>
-                            </CardContent>
-              
-                     </Card>
-                </div>
-            )}
-        </div>
-    )
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )}
+  </div>
+);
 }

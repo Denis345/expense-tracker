@@ -82,8 +82,7 @@ export default function CreateCategoryDialog(){
                 <Button
                 disabled={isLoading}
                 onClick={openDialog}
-                variant="outline"
-                className="border-slate-700 w-full h-full bg-slate-900/40 text-slate-200 hover:bg-slate-800 hover:text-white"
+                className="border border-[var(--border)] w-full h-full bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-slate-800 hover:text-white"
                 >
                  <LayoutGrid className="h-10 w-10" />   
                 Create category

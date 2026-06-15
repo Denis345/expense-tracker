@@ -79,90 +79,89 @@ export default function ChangePassButton(){
             setSaving(false)
     }
 
-    return(
-        <div>
+return (
+  <div>
 
+    {/* Button to open dialog */}
+    <Button
+      className="
+        h-11
+        w-auto
+        flex items-center gap-2
+        border border-[var(--border)]
+        bg-[var(--secondary)]
+        text-[var(--accent)]
+        hover:bg-[var(--secondary-surface)]
+        hover:text-[var(--text-primary)]
+        transition-all
+      "
+      onClick={() => setChangeDialog(true)}
+    >
+      <Lock className="h-4 w-4" />
+      Change Password
+    </Button>
+
+    {/* Dialog */}
+    <Dialog
+      open={ChangeDialog}
+      onOpenChange={(open) => {
+        setChangeDialog(open);
+        if (!open) closeChange();
+      }}
+    >
+      <DialogContent className="bg-[var(--card)] text-[var(--text-primary)] shadow-[var(--shadow-card)] rounded-2xl p-6">
+        <DialogHeader>
+          <DialogTitle className="text-[var(--text-primary)]">Change Password</DialogTitle>
+          <DialogDescription className="text-[var(--text-muted)]">
+            Enter data below
+          </DialogDescription>
+        </DialogHeader>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+
+          <Input
+            type="text"
+            placeholder="Old password"
+            value={oldPassword}
+            onChange={(e) => setOldPassword(e.target.value)}
+            className="border border-[var(--border)] bg-[var(--secondary-surface)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:ring-2 focus:ring-[var(--ring)]"
+          />
+
+          <Input
+            type="text"
+            placeholder="New password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            className="border border-[var(--border)] bg-[var(--secondary-surface)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:ring-2 focus:ring-[var(--ring)]"
+          />
+
+          <Input
+            type="text"
+            placeholder="Confirm new password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="border border-[var(--border)] bg-[var(--secondary-surface)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:ring-2 focus:ring-[var(--ring)]"
+          />
+
+          {error && (
+            <p className="text-sm text-[var(--destructive)]">{error}</p>
+          )}
+
+          <DialogFooter className="flex justify-end gap-2">
             <Button
-              className="
-                border border-slate-700
-                bg-transparent
-                text-indigo-300
-                hover:border-indigo-500
-                hover:text-white
-                flex items-center gap-2
-              "
-              onClick={()=>setChangeDialog(true)}
+              disabled={saving}
+              type="submit"
+              variant="outline"
+              className="border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary-surface)] hover:text-[var(--text-primary)]"
             >
-              <Lock className="h-4 w-4" />
-              Change Password
+              {saving ? "Saving..." : "Save"}
             </Button>
+          </DialogFooter>
 
-            <Dialog open={ChangeDialog}   onOpenChange={(open) => {
-                    setChangeDialog(open)
+        </form>
+      </DialogContent>
+    </Dialog>
 
-                    if (!open) {
-                        closeChange()
-                    }
-                }}>
-
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Change Password</DialogTitle>
-                        <DialogDescription>
-                            Enter data below
-                        </DialogDescription>
-                 </DialogHeader>
-                 <form onSubmit={handleSubmit}>
-
-                    <div className="flex flex-col gap-5">
-
-                        <Input
-                        type="text"
-                        placeholder="Old password"
-                        value={oldPassword}
-                        onChange={(e) => setOldPassword(e.target.value)}
-                        />
-
-                        <Input
-                            type="text"
-                            placeholder="New password"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                        />
-
-                        <Input
-                            type="text"
-                            placeholder="Confirm new password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-
-
-                    </div>
-                        {error && (
-                            <p className="text-sm text-red-500">
-                            {error}
-                            </p>
-                        )}
-
-
-                    <DialogFooter>
-                        <Button disabled={saving} type="submit" variant="outline">
-                           {saving?"Saving...":"Save"} 
-                        </Button>
-                    </DialogFooter>
-                 </form>
-
-    
-                
-         
-                
-
-                </DialogContent>
-
-            </Dialog>
-
-        </div>
-
-    )
+  </div>
+);
 }

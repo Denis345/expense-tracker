@@ -1,6 +1,10 @@
 import React from 'react'
 import './styles.css'
 
+import {getCurrentUserForThisRequest} from "@/lib/getCurrentUserForThisRequest"
+import { cookies } from 'next/headers'
+
+
 export const metadata = {
   description: "Track your expenses and manage categories easily.",
   title: 'Personal Finance Tracker',
@@ -34,10 +38,21 @@ export const metadata = {
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
+
+  type Theme = "light" | "dark"
+
+  function normalizeTheme(value: string | undefined): Theme {
+    return value === "dark" ? "dark" : "light"
+  }
+    const cookieStore  = await cookies()
+    const themeCookie  = cookieStore.get('theme')?.value
+    const  theme =  normalizeTheme(themeCookie)
+
   const { children } = props
 
   return (
-    <html lang="en">
+    <html lang="en" className={theme==="dark"? "dark": ""}>
+    {/* <html lang="en"> */}
       <body>
         <main>{children}</main>
       </body>

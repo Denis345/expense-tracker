@@ -10,6 +10,7 @@ export async function registerUser(_prevState:any, FormData:FormData){
   const email = FormData.get("email") as string
   const  password = FormData.get("password") as string
   const role = "user"
+  const theme = "dark"
 
 
   async function createDefCtegory(userId:number){
@@ -105,7 +106,8 @@ export async function registerUser(_prevState:any, FormData:FormData){
           name,
           email,
           password,
-          role
+          role,
+          theme
         }
       }
     )

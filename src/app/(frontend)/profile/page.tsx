@@ -1,24 +1,30 @@
-import BackDahboardBut from "./BackDahboardBut" 
+import TopButtons from "./TopButtons" 
 import ProfileHeader from "./ProfileHeader" 
 import ProfileHistory from "./ProfileHistory"
 import ProfileDown from "./ProfileDown"
 
 export default async function Profile(){
 
-    return (
-  <div className="min-h-screen bg-[#0f172a] px-6 py-10">
+return (
+  <div className="min-h-screen bg-[var(--background)] px-6 py-10">
     <div className="mx-auto max-w-5xl">
-      <div className="flex flex-col gap-6 rounded-3xl  bg-slate-300 p-4 shadow-2xl min-[490px]:p-8">
-        
-        <BackDahboardBut/>
+      <div className="flex flex-col gap-6 rounded-3xl bg-[var(--card)] p-4 shadow-[var(--shadow-card)] min-[490px]:p-8">
 
-        <ProfileHeader/>
+        {/* Back to Dashboard Button */}
+        {/* <BackDahboardBut /> */}
+        <TopButtons/>
 
-        <ProfileHistory/>
+        {/* Profile Header */}
+        <ProfileHeader />
 
-        <ProfileDown/>
+        {/* Profile History */}
+        <ProfileHistory />
+
+        {/* Profile Footer / Down section */}
+        <ProfileDown />
+
       </div>
     </div>
   </div>
-)
+);
 }
